@@ -2,6 +2,23 @@
 
 Sistem manajemen arisan modern yang dibangun dengan Next.js, Prisma, dan Tailwind CSS. Aplikasi ini dirancang untuk memudahkan pengelolaan anggota, periode arisan, pemenang, dan pembayaran dengan antarmuka yang indah dan responsif.
 
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td><img src="screenshots/1.png" width="450" /></td>
+    <td><img src="screenshots/2.png" width="450" /></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/3.png" width="450" /></td>
+    <td><img src="screenshots/4.png" width="450" /></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/5.png" width="450" /></td>
+    <td><img src="screenshots/6.png" width="450" /></td>
+  </tr>
+</table>
+
 ## Fitur Utama
 
 -   **Dashboard Interaktif**: Ringkasan statistik anggota, arisan aktif, pemenang, dan total dana terkumpul.
