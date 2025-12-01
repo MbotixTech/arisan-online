@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  id        Int       @id @default(autoincrement())
+  name      String
+  phone     String
+  address   String?
+  status    String    @default("active")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payments  Payment[]
+  wins      Winner[]
+
+  @@map("members")
+}
+
+model ArisanPeriod {
+  id             Int       @id @default(autoincrement())
+  name           String
+  amount         Decimal
+  durationMonths Int
+  status         String    @default("active")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  payments       Payment[]
+  winners        Winner[]
+
+  @@map("arisan_periods")
+}
+
+model Payment {
+  id          Int          @id @default(autoincrement())
+  memberId    Int
+  arisanId    Int
+  amount      Decimal
+  paymentDate DateTime
+  status      String       @default("paid")
+  notes       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  member      Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  arisan      ArisanPeriod @relation(fields: [arisanId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model Winner {
+  id        Int          @id @default(autoincrement())
+  arisanId  Int
+  memberId  Int
+  drawDate  DateTime     @default(now())
+  createdAt DateTime     @default(now())
+  arisan    ArisanPeriod @relation(fields: [arisanId], references: [id], onDelete: Cascade)
+  member    Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@unique([arisanId, memberId])
+  @@map("winners")
+}
